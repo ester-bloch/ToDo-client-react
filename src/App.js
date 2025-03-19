@@ -18,7 +18,13 @@ function App() {
   }
 
   async function updateCompleted(todo, isComplete) {
-    await service.setCompleted(todo.id, isComplete);
+    console.log("todo:")
+    console.log(todo);
+    console.log("isComplete:")
+    console.log(isComplete);
+    console.log("!todo.isComplete:")
+    console.log(!todo.isComplete); 
+       await service.setCompleted(todo.id, !todo.isComplete);
     await getTodos();//refresh tasks list (in order to see the updated one)
   }
 
@@ -45,9 +51,14 @@ function App() {
             return (
               <li className={todo.isComplete ? "completed" : ""} key={todo.id}>
                 <div className="view">
-                  <input className="toggle" type="checkbox" defaultChecked={todo.isComplete} onChange={(e) => updateCompleted(todo, e.target.checked)} />
+                  <input className="toggle" type="checkbox" defaultChecked={todo.isComplete} onChange={
+                    (e) =>{
+                       updateCompleted(todo, e.target.checked);
+                            console.log(todo)
+                            console.log(e.target.checked)}
+                    }></input>
                   <label>{todo.name}</label>
-                  <button className="destroy" onClick={() => deleteTodo(todo.id)}></button>
+                  <button className = "destroy" onClick={() => deleteTodo(todo.id)}></button>
                 </div>
               </li>
             );
