@@ -48,7 +48,9 @@ export default {
 
   setCompleted: async (id, isComplete) => {
     try {////http://localhost:5074/setCompleted?id=2&isComplete=true
-      const response = await axios.put(`/setCompleted?id=${id}&isComplete=${isComplete}`);
+      //      const response = await axios.delete(`/items/${id}`);
+
+      const response = await axios.put(`/setCompleted/${id}?isComplete=${isComplete}`);
       return response.data; // מחזיר את המידע שהשרת מחזיר לאחר העדכון
     } catch (error) {
       console.error('Error updating task:', error);
